@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\Auth\InvalidLoginCredentials;
+use App\Exceptions\TaskNotFound;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -20,5 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
             return response()->json([
                 'message' => 'Invalid credentials.'
             ], 401);
+        })
+        ->render(function (TaskNotFound $e) {
+            return response()->json([
+                'message' => 'Task not found.'
+            ], 404);
         });
     })->create();
