@@ -17,14 +17,14 @@ final readonly class TaskService
         private readonly TaskRepositoryInterface $taskRepository = new TaskEloquentRepository()
     ){}
 
-    public function getAll(): \Illuminate\Support\Collection
+    public function getAllForUser(int $userId): \Illuminate\Support\Collection
     {
-        return $this->taskRepository->getAll();
+        return $this->taskRepository->getAllForUser($userId);
     }
 
     public function getById(int $id): TaskDto
     {
-        if (!$this->taskRepository->existsById($id)) {
+        if (!$this->taskRepository->exists($id)) {
             throw new TaskNotFound();
         }
 
@@ -38,7 +38,7 @@ final readonly class TaskService
 
     public function update(int $id, UpdateTaskDto $taskDto): TaskDto
     {
-        if (!$this->taskRepository->existsById($id)) {
+        if (!$this->taskRepository->exists($id)) {
             throw new TaskNotFound();
         }
 
@@ -47,7 +47,7 @@ final readonly class TaskService
 
     public function deleteById(int $id): bool
     {
-        if (!$this->taskRepository->existsById($id)) {
+        if (!$this->taskRepository->exists($id)) {
             throw new TaskNotFound();
         }
 

@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Task;
+namespace App\Http\Requests\Tasks;
 
 use App\Models\Task;
-use App\Rules\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class DestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,19 +25,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => [
-                'required',
-                'string'
-            ],
-            'description' => [
-                'required',
-                'string'
-            ],
-            'status' => [
-                'required',
-                'string',
-                new TaskStatus()
-            ],
+            //
         ];
     }
 }

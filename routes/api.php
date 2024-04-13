@@ -9,11 +9,16 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //})->middleware('auth:sanctum');
 
-Route::prefix('/auth')->name('auth.')->group(function () {
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
-});
+Route::prefix('/auth')
+    ->controller(AuthController::class)
+    ->name('auth.')
+    ->group(function () {
+        Route::post('/register', 'register')->name('register');
+        Route::post('/login', 'login')->name('login');
+    });
 
 Route::apiResources([
     'tasks' => TaskController::class,
+], [
+    'middleware' => 'auth:sanctum'
 ]);

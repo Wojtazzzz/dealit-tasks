@@ -12,9 +12,13 @@ use Illuminate\Support\Collection;
 
 final class TaskEloquentRepository implements TaskRepositoryInterface
 {
-    public function getAll(): Collection
+    public function getAllForUser(int $userId): Collection
     {
-        $tasks = Task::query()->get();
+        $tasks = Task::query()
+            ->where([
+                'user_id' => $userId
+            ])
+            ->get();
 
         return $tasks->map(fn (Task $task) => new TaskDto(
             $task->id,
@@ -46,6 +50,7 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
             'title' => $taskDto->title,
             'description' => $taskDto->description,
             'status' => $taskDto->status,
+            'user_id' => $taskDto->user_id,
         ]);
 
         return $this->getById($taskEntity->id);
@@ -75,7 +80,7 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
             ->delete($id);
     }
 
-    public function existsById(int $id): bool
+    public function exists(int $id): bool
     {
         return Task::query()
             ->where([

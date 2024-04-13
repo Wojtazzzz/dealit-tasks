@@ -13,15 +13,17 @@ final class UpdateTaskDto
         public string $title,
         public string $description,
         public TaskStatus $status,
+        public int $userId,
     ) {}
 
-    public static function fromRequest(int $id, array $data): UpdateTaskDto
+    public static function fromRequest(int $id, int $userId, array $data): UpdateTaskDto
     {
         return new UpdateTaskDto(
             $id,
             $data['title'],
             $data['description'],
             TaskStatus::from($data['status']),
+            $userId,
         );
     }
 }
