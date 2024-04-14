@@ -1,12 +1,8 @@
 
 # DealIT - Tasks app
 
-An application created for the recruitment process.
-
-## Description
-
 Rest Api containing essential operations to manage your tasks.
-SQLite-based for simplicity.
+SQLite-based for simplicity. Created for the recruitment process.
 
 ## Installation
 
