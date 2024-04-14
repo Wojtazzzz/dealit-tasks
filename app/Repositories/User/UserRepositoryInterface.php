@@ -14,8 +14,6 @@ interface UserRepositoryInterface
 {
     public function register(RegisterDto $registerDto): UserDto;
 
-    public function login(LoginDto $loginDto): UserDto;
-
     public function findByEmail(string $email): UserDto;
 
     public function findById(int $id): UserDto;

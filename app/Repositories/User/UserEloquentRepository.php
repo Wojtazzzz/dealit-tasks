@@ -22,11 +22,6 @@ final class UserEloquentRepository implements UserRepositoryInterface
         return new UserDto($user->id, $user->name, $user->email);
     }
 
-    public function login(LoginDto $loginDto): UserDto
-    {
-        // TODO: Implement login() method.
-    }
-
     public function findByEmail(string $email): UserDto
     {
         $user = User::query()->where([
