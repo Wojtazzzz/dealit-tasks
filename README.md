@@ -42,6 +42,12 @@ Run queue (only mails are queued)
 php artisan queue:work
 ```
 
+Run local server
+
+```bash
+php artisan serve
+```
+
 ## API Reference
 With example payloads
 
