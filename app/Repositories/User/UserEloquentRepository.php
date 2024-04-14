@@ -30,13 +30,27 @@ final class UserEloquentRepository implements UserRepositoryInterface
     public function findByEmail(string $email): UserDto
     {
         $user = User::query()->where([
-            'email', $email
+            'email' => $email
         ])
         ->first([
             'id',
             'name',
             'email',
         ]);
+
+        return new UserDto($user->id, $user->name, $user->email);
+    }
+
+    public function findById(int $id): UserDto
+    {
+        $user = User::query()->where([
+            'id' => $id
+        ])
+            ->first([
+                'id',
+                'name',
+                'email',
+            ]);
 
         return new UserDto($user->id, $user->name, $user->email);
     }

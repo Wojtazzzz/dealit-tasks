@@ -7,6 +7,7 @@ namespace App\Repositories\Task;
 use App\Dto\Task\StoreTaskDto;
 use App\Dto\Task\TaskDto;
 use App\Dto\Task\UpdateTaskDto;
+use App\Enums\TaskStatus;
 use Illuminate\Support\Collection;
 
 interface TaskRepositoryInterface
@@ -22,4 +23,6 @@ interface TaskRepositoryInterface
     public function deleteById(int $id): bool;
 
     public function exists(int $id): bool;
+
+    public function getStatus(int $id): TaskStatus;
 }

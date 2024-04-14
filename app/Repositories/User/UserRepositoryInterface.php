@@ -17,4 +17,6 @@ interface UserRepositoryInterface
     public function login(LoginDto $loginDto): UserDto;
 
     public function findByEmail(string $email): UserDto;
+
+    public function findById(int $id): UserDto;
 }

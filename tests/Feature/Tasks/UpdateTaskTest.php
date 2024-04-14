@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Tasks;
 
+use App\Mail\TaskStatusChanged;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -62,6 +64,43 @@ class UpdateTaskTest extends TestCase
             'status' => $updateData['status'],
             'user_id' => $this->user->id,
         ]);
+    }
+
+    public function test_update_task_status_send_notification(): void
+    {
+        Sanctum::actingAs($this->user);
+
+        $updateData = [
+            'title' => 'Updated title',
+            'description' => 'Updated description',
+            'status' => 'closed',
+        ];
+
+        $response = $this->putJson(route('tasks.update', $this->task), $updateData);
+
+        $response->assertStatus(200);
+
+        Mail::assertNothingSent();
+        Mail::assertQueued(TaskStatusChanged::class);
+        Mail::assertQueuedCount(1);
+    }
+
+    public function test_update_task_without_update_status_not_send_notification(): void
+    {
+        Sanctum::actingAs($this->user);
+
+        $updateData = [
+            'title' => 'Updated title',
+            'description' => 'Updated description',
+            'status' => 'open',
+        ];
+
+        $response = $this->putJson(route('tasks.update', $this->task), $updateData);
+
+        $response->assertStatus(200);
+
+        Mail::assertNothingSent();
+        Mail::assertNothingQueued();
     }
 
     public function test_update_task_statuses(): void

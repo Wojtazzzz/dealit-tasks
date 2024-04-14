@@ -13,6 +13,7 @@ final class TaskDto
         public string $title,
         public string $description,
         public TaskStatus $status,
+        public int $user_id,
         public string $createdAt,
         public string $updatedAt,
     ) {}

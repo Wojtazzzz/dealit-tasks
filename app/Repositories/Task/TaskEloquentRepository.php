@@ -7,6 +7,8 @@ namespace App\Repositories\Task;
 use App\Dto\Task\StoreTaskDto;
 use App\Dto\Task\TaskDto;
 use App\Dto\Task\UpdateTaskDto;
+use App\Enums\TaskStatus;
+use App\Events\TaskStatusChanged;
 use App\Models\Task;
 use Illuminate\Support\Collection;
 
@@ -25,6 +27,7 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
             $task->title,
             $task->description,
             $task->status,
+            $task->user_id,
             (string) $task->created_at,
             (string) $task->updated_at,
         ));
@@ -39,6 +42,7 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
             $task->title,
             $task->description,
             $task->status,
+            $task->user_id,
             (string) $task->created_at,
             (string) $task->updated_at,
         );
@@ -87,5 +91,14 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
                 'id' => $id
             ])
             ->exists();
+    }
+
+    public function getStatus(int $id): TaskStatus
+    {
+        return Task::query()
+            ->where([
+                'id' => $id
+            ])
+            ->value('status');
     }
 }
