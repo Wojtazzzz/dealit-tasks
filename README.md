@@ -15,7 +15,7 @@ gh repo clone Wojtazzzz/dealit-tasks
 Create env variables and fill with own credentials (consider MAILGUN variables if you want to work with emails)
 
 ```bash
-cd dealit-tasks && copy .env.example .env
+cd dealit-tasks && cp .env.example .env
 ```
 
 Install dependencies
