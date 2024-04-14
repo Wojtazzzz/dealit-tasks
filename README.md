@@ -9,25 +9,25 @@ SQLite-based for simplicity. Created for the recruitment process.
 Copy repo
 
 ```bash
-  gh repo clone Wojtazzzz/dealit-tasks
+gh repo clone Wojtazzzz/dealit-tasks
 ```
 
 Create env variables and fill with own credentials (consider MAILGUN variables if you want to work with emails)
 
 ```bash
-  cd dealit-tasks && copy .env.example .env
+cd dealit-tasks && copy .env.example .env
 ```
 
 Install dependencies
 
 ```bash
-  composer install
+composer install
 ```
 
 Run queue (only mails are queued)
 
 ```bash
-  php artisan queue:work
+php artisan queue:work
 ```
 
 ## API Reference
@@ -36,7 +36,7 @@ With example payloads
 ### Register
 
 ```http
-  POST /api/auth/register
+POST /api/auth/register
 ```
 
 ```json
@@ -52,7 +52,7 @@ Returns token which should be passed as header in next requests:
 `Authorization: Bearer {$token}`
 
 ```http
-  POST /api/auth/login
+POST /api/auth/login
 ```
 
 ```json
@@ -65,19 +65,19 @@ Returns token which should be passed as header in next requests:
 ### Get tasks
 
 ```http
-  GET /api/tasks
+GET /api/tasks
 ```
 
 ### Get task
 
 ```http
-  GET /api/tasks/{id}
+GET /api/tasks/{id}
 ```
 
 ### Create task
 
 ```http
-  POST /api/tasks
+POST /api/tasks
 ```
 
 ```json
@@ -91,7 +91,7 @@ Returns token which should be passed as header in next requests:
 ### Update task
 
 ```http
-  PUT /api/tasks/{id}
+PUT /api/tasks/{id}
 ```
 
 ```json
@@ -105,5 +105,5 @@ Returns token which should be passed as header in next requests:
 ### Delete task
 
 ```http
-  DELETE /api/tasks/{id}
+DELETE /api/tasks/{id}
 ```
