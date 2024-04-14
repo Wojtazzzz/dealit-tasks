@@ -3,7 +3,6 @@
 namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegisterUserTest extends TestCase
@@ -30,7 +29,7 @@ class RegisterUserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_not_register_user_with_short_password(): void
+    public function test_cannot_register_user_with_short_password(): void
     {
         $response = $this->postJson($this->registerRoute, [
             'name' => 'test_user',
@@ -41,7 +40,7 @@ class RegisterUserTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_not_register_user_with_invalid_email(): void
+    public function test_cannot_register_user_with_invalid_email(): void
     {
         $response = $this->postJson($this->registerRoute, [
             'name' => 'test_user',
@@ -52,7 +51,7 @@ class RegisterUserTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_not_register_user_without_name(): void
+    public function test_cannot_register_user_without_name(): void
     {
         $response = $this->postJson($this->registerRoute, [
             'email' => 'jane.doegmail.com',
@@ -62,7 +61,7 @@ class RegisterUserTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_not_register_user_without_email(): void
+    public function test_cannot_register_user_without_email(): void
     {
         $response = $this->postJson($this->registerRoute, [
             'name' => 'test_user',
@@ -72,7 +71,7 @@ class RegisterUserTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_not_register_user_without_password(): void
+    public function test_cannot_register_user_without_password(): void
     {
         $response = $this->postJson($this->registerRoute, [
             'name' => 'test_user',

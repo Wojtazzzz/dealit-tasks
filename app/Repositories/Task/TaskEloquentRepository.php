@@ -25,8 +25,8 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
             $task->title,
             $task->description,
             $task->status,
-            $task->createdAt,
-            $task->updatedAt,
+            (string) $task->created_at,
+            (string) $task->updated_at,
         ));
     }
 
@@ -39,8 +39,8 @@ final class TaskEloquentRepository implements TaskRepositoryInterface
             $task->title,
             $task->description,
             $task->status,
-            $task->createdAt,
-            $task->updatedAt,
+            (string) $task->created_at,
+            (string) $task->updated_at,
         );
     }
 

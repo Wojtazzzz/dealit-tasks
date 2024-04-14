@@ -4,8 +4,6 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class LoginUserTest extends TestCase
@@ -60,7 +58,7 @@ class LoginUserTest extends TestCase
         $response->assertStatus(401);
     }
 
-    public function test_not_login_with_name(): void
+    public function test_cannot_login_with_name(): void
     {
         $response = $this->postJson($this->loginRoute, [
             'email' => $this->user->name,
@@ -70,7 +68,7 @@ class LoginUserTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_not_login_without_email(): void
+    public function test_cannot_login_without_email(): void
     {
         $response = $this->postJson($this->loginRoute, [
             'password' => 'test_password',
@@ -79,7 +77,7 @@ class LoginUserTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_not_login_without_password(): void
+    public function test_cannot_login_without_password(): void
     {
         $response = $this->postJson($this->loginRoute, [
             'email' => $this->user->email
