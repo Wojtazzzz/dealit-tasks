@@ -24,6 +24,18 @@ Install dependencies
 composer install
 ```
 
+Run migrations
+
+```bash
+php artisan migrate
+```
+
+Run tests (optional)
+
+```bash
+php artisan test
+```
+
 Run queue (only mails are queued)
 
 ```bash
