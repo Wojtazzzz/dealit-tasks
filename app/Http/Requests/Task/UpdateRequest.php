@@ -15,7 +15,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', Task::find($this->task));
+        return $this->user()->can('update', [Task::class, Task::find($this->task)]);
     }
 
     /**

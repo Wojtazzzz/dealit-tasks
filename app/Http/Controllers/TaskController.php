@@ -6,10 +6,10 @@ namespace App\Http\Controllers;
 
 use App\Dto\Task\StoreTaskDto;
 use App\Dto\Task\UpdateTaskDto;
+use App\Http\Requests\Task\DestroyRequest;
+use App\Http\Requests\Task\ShowRequest;
 use App\Http\Requests\Task\StoreRequest;
 use App\Http\Requests\Task\UpdateRequest;
-use App\Http\Requests\Tasks\DestroyRequest;
-use App\Http\Requests\Tasks\ShowRequest;
 use App\Http\Resources\TaskResource;
 use App\Services\TaskService;
 use Illuminate\Http\JsonResponse;

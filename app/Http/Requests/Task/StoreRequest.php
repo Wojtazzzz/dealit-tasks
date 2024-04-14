@@ -4,6 +4,7 @@ namespace App\Http\Requests\Task;
 
 use App\Rules\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return (bool) Auth::user();
     }
 
     /**

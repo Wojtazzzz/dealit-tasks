@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Tasks;
+namespace App\Http\Requests\Task;
 
 use App\Models\Task;
 use Illuminate\Foundation\Http\FormRequest;
@@ -14,7 +14,7 @@ class DestroyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', Task::find($this->task));
+        return $this->user()->can('destroy', [Task::class, Task::find($this->task)]);
     }
 
     /**

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Tasks;
+namespace App\Http\Requests\Task;
 
+use App\Exceptions\TaskNotFound;
 use App\Models\Task;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +15,7 @@ class ShowRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', Task::find($this->task));
+        return $this->user()->can('show', [Task::class, Task::find($this->task)]);
     }
 
     /**
